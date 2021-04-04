@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.formacionbdi.springboot.app.usuarios.models.entity.Rol&apos; to &apos;Role&apos;&#x0D;&#x0A;- Original project: &apos;springboot-servicio-usuarios&apos;&#x0D;&#x0A;- Original element: &apos;com.formacionbdi.springboot.app.usuarios.models.entity.Rol&apos;&#x0D;&#x0A;- Renamed element: &apos;com.formacionbdi.springboot.app.usuarios.models.entity.Role&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Rol&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.formacionbdi.springboot.app.usuarios.models.entity{Rol.java[Rol" matchStrategy="1" name="Role" qualified="false" references="true" similarDeclarations="false" stamp="1604355994215" textual="false" version="1.0"/>
+</session>

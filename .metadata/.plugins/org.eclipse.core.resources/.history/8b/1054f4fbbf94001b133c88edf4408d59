@@ -1,0 +1,270 @@
+package com.formacionbdi.springboot.app.adn.implement;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.formacionbdi.springboot.app.adn.dao.AdnDao;
+import com.formacionbdi.springboot.app.adn.service.AdnService;
+import com.formacionbdi.springboot.app.commons.models.dto.RegistroAdnDTO;
+import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
+
+@Service
+public class AdnServiceImpl implements AdnService {
+	
+	final int minLength = 4;
+	int occurrences = 0;
+	Map<Integer, Integer> position = new HashMap<Integer, Integer>(); 
+
+	@Autowired
+	private AdnDao adnDao;
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<RegistroAdn> findAll() {
+		return (List<RegistroAdn>) adnDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public RegistroAdn findById(Long id) {
+		return adnDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public RegistroAdn save(RegistroAdn registroAdn) {
+		return adnDao.save(registroAdn);
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(Long id) {
+		adnDao.deleteById(id);
+	}
+	
+	private int searchSequence(String stringIn) {
+		String[] sequences = {"AAAA", "TTTT", "CCCC", "GGGG"};
+		int times = 0;
+		for(String sequece : sequences) {
+			if( stringIn.contains(sequece) )
+				times++;
+		}
+
+		return times;
+	}
+	
+	public String isMutante(String[] adnIn) {
+		
+		final int minOccurrences = 2;
+		final String human = "H";
+		final String mutant = "M";
+		RegistroAdn registroAdnEntity = new RegistroAdn();
+		
+		
+		String result = validDimension(adnIn);
+		if(result.equalsIgnoreCase("OK"))
+			result = validCharacters(adnIn);
+		if(result.equalsIgnoreCase("OK")) {
+			occurrences = horizontal(adnIn);
+			if(occurrences < minOccurrences) {
+				occurrences += vertical(adnIn);
+				if(occurrences < minOccurrences) 
+					occurrences += oblique(adnIn);
+				if(occurrences < minOccurrences) 
+					occurrences += obliqueInv(adnIn);
+			}
+			result = occurrences >= minOccurrences ? mutant : human;
+			registroAdnEntity.setType(result);
+			registroAdnEntity.setAdn(adnIn.toString());
+			save(registroAdnEntity);
+		}
+		
+		return result;
+	}
+	
+	/*It is validated that the DNA has valid characters*/
+	private String validCharacters(String[] adnIn) {
+			final String characterValid = "ATCG";
+			final String error = "Character Invalid";
+			for (String cadena : adnIn){
+				for(Character character : cadena.toCharArray()) {
+					if( characterValid.indexOf(character) < 0) {
+						return error;
+					}
+				}
+		}
+			
+		return "OK";
+	}
+	
+	/*It is validated that each element of the array has the same number of characters*/
+	private String validDimension(String[] adnIn) {
+		final String error = "DNA structure error length difference";
+		for (String cadena : adnIn){
+			if(cadena.length()!= adnIn.length || cadena.length() < minLength) {
+				return error;
+			}
+		}
+		
+		return "OK";
+	}
+	
+	private int horizontal(String[] adnIn) {
+		int  times = 0;
+		for (String cadena : adnIn){
+			times += searchSequence(cadena);
+		}
+		return times;
+	}
+	
+	private int vertical(String[] adnIn) {
+		int times = 0;
+		int elementLength = adnIn[0].length();
+		for(int i = 0; i < elementLength; i++ ) {
+			String vertical = "";
+			for (String cadena : adnIn){
+				vertical += cadena.charAt(i);
+			}
+			times += searchSequence(vertical);
+		}
+		
+		return times;
+	}
+	
+	private String obliquePrincipal(String[] adnIn) {
+		String obliqueString = "";
+		position.clear();
+		for(int i = 0; i < adnIn[0].length(); i++ ) {
+			obliqueString += adnIn[i].charAt(i);
+			position.put(i,i);
+		}
+				
+		return obliqueString;
+	}
+	
+	private String obliqueInverse(String[] adnIn) {
+		String obliqueString = "";
+		int elementLength = adnIn[0].length() - 1;
+		int posH = 0;
+		position.clear();
+		for(int i = elementLength; i >= 0 ; i--) {
+			position.put(posH,i);
+			obliqueString += adnIn[posH++].charAt(i);
+		}
+		return obliqueString;
+	}
+	
+	private int oblique(String[] adnIn) {
+		int times = 0;
+		int pos = 0;
+		
+		Map<Integer, Integer> newPosition = new HashMap<Integer, Integer>();
+		String obliqueString = "";
+			obliqueString = "";
+//			for(int i = 0; i < adnIn[0].length(); i++ ) {
+//				obliqueString += adnIn[i].charAt(i);
+//				position.put(i,i);
+//			}
+//			times += searchSequence(obliqueString);
+           
+			obliqueString = obliquePrincipal(adnIn);
+			times += searchSequence(obliqueString);
+			
+			for(int iteracion = 0; iteracion < adnIn.length; iteracion++ ) {
+				if(adnIn.length - iteracion > minLength) {
+					obliqueString = ""; 
+					for(int p = 0; p < position.size(); p++) {
+						 pos = position.get(p)+1;
+						 if(pos < adnIn.length) {
+							 obliqueString += adnIn[p].charAt(pos);
+							 newPosition.put(p, pos); 
+						 }
+					}
+					times += searchSequence(obliqueString);
+					position.clear();
+					for(int key = 0; key < newPosition.size(); key++ ) {
+						position.put(key,newPosition.get(key));	
+					}
+					newPosition.clear();
+				} else {
+					break;
+				}
+			}
+			
+		   obliqueString = obliquePrincipal(adnIn);
+			
+           for(int a = 1; a < adnIn.length; a++) {
+	        	   obliqueString = "";
+	        	   if((adnIn.length - a) >= minLength) {
+	        		   for(int iteraciones = a; iteraciones < adnIn.length; iteraciones++) {
+		   	   				int posC = position.get(iteraciones);
+		   	   				if(posC > 0)
+		   	   					posC--;
+		   	   				obliqueString += adnIn[iteraciones].charAt(posC);
+		   	   				position.replace(iteraciones, posC);
+	      			    }
+	      				times += searchSequence(obliqueString);
+	      				obliqueString = "";
+	        	   } else {
+	        		   break;
+	        	   }
+	           }
+			
+		return times;
+	}
+	
+	private int obliqueInv(String[] adnIn) {
+		int times = 0;
+		String obliqueString = "";
+		obliqueString = obliqueInverse(adnIn);
+		times += searchSequence(obliqueString);
+		int van = 1;
+		for(int a = 0; a < adnIn.length - 1; a++) {
+     	   obliqueString = "";
+     	   if((adnIn.length - van) >= minLength) {
+     		   for(int iteraciones = 0; iteraciones < adnIn.length - van; iteraciones++) {
+	   	   				int posC = position.get(iteraciones);
+	   	   				if(posC > 0)
+	   	   					posC--;
+	   	   				obliqueString += adnIn[iteraciones].charAt(posC);
+	   	   				position.replace(iteraciones, posC);
+   			    }
+   				times += searchSequence(obliqueString);
+   			    van++;
+     	   } else {
+     		   break;
+     	   }
+        }
+		
+		obliqueString = obliqueInverse(adnIn);
+		
+		van = 1;
+		for(int a = 1; a < adnIn.length - 1; a++) {
+     	   obliqueString = "";
+     	   if((adnIn.length - van) >= minLength) {
+     		   for(int iteraciones = a; iteraciones < adnIn.length; iteraciones++) {
+	   	   				int posC = position.get(iteraciones);
+	   	   				if(posC >= 0)
+	   	   					posC++;
+	   	   				obliqueString += adnIn[iteraciones].charAt(posC);
+	   	   				position.replace(iteraciones, posC);
+   			    }
+   				times += searchSequence(obliqueString);
+   			    van++;
+     	   } else {
+     		   break;
+     	   }
+        }
+		return times;
+	}
+
+}
+
+
+

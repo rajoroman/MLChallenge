@@ -1,0 +1,17 @@
+package com.formacionbdi.springboot.app.adn.service;
+
+import java.util.List;
+
+import com.formacionbdi.springboot.app.commons.models.dto.RegistroAdnDTO;
+import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
+
+public interface AdnService {
+	
+	public List<RegistroAdn> findAll();
+	public RegistroAdn findById(Long id);
+	public RegistroAdn save(RegistroAdnDTO producto);
+	public void deleteById(Long id);
+	public String isMutante(String[] adnIn);
+	
+
+}

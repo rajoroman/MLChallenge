@@ -1,0 +1,92 @@
+package com.formacionbdi.springboot.app.adn.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.formacionbdi.springboot.app.adn.models.dao.AdnDao;
+import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
+
+@Service
+public class AdnServiceImpl implements AdnService {
+	
+	
+	
+	@Autowired
+	private AdnDao adnDao;
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<RegistroAdn> findAll() {
+		
+		return (List<RegistroAdn>) adnDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public RegistroAdn findById(Long id) {
+		
+		return adnDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public RegistroAdn save(RegistroAdn producto) {
+		return adnDao.save(producto);
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(Long id) {
+		adnDao.deleteById(id);
+		
+	}
+	
+	public String isMutante(String[] adnIn) {
+		
+		String result = validDimension(adnIn);
+		if(result.equalsIgnoreCase("OK"))
+			result = validCharacters(adnIn);
+		if(result.equalsIgnoreCase("OK"))
+			result = oblique(adnIn);
+		return result;
+	}
+	
+	/*It is validated that the DNA has valid characters*/
+	private String validCharacters(String[] adnIn) {
+			final String characterValid = "ATCG";
+			final String error = "Character Invalid";
+			for (String cadena : adnIn){
+				for(Character character : cadena.toCharArray()) {
+					if( characterValid.indexOf(character) < 0) {
+						return error;
+					}
+				}
+		}
+			
+		return "OK";
+	}
+	
+	/*It is validated that each element of the array has the same number of characters*/
+	private String validDimension(String[] adnIn) {
+		final int minLength = 4;
+		final String error = "DNA structure error length difference";
+		for (String cadena : adnIn){
+			if(cadena.length()!= adnIn.length || cadena.length() < minLength) {
+				return error;
+			}
+		}
+		
+		return "OK";
+	}
+	
+	private String oblique(String[] adnIn) {
+		
+		
+		return "OK";
+		
+	}
+
+}

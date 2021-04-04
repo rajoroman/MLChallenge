@@ -1,0 +1,2 @@
+INSERT INTO registroadn(adn, tipo, create_at) VALUES ('aaaaa,bbbbb,cccc,dddd','H');
+INSERT INTO registroadn(adn, tipo, create_at) VALUES ('fffff,ggggg,hhhh,iiii','M');

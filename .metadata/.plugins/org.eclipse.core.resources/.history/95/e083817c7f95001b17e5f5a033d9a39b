@@ -1,0 +1,70 @@
+package com.formacionbdi.springboot.app.adn.controllers;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.formacionbdi.springboot.app.adn.service.AdnService;
+import com.formacionbdi.springboot.app.commons.models.dto.AdnDTO;
+import com.formacionbdi.springboot.app.commons.models.dto.StatsDTO;
+import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
+
+@RestController
+public class AdnController {
+	
+	final  Logger log = LoggerFactory.getLogger(AdnController.class);
+
+	@Autowired
+	private AdnService adnService;
+	
+	@GetMapping("/list")
+	public List<RegistroAdn> listar(){
+		return adnService.findAll().stream().map(adnAux -> {
+			return adnAux;
+		}).collect(Collectors.toList());
+	}
+	
+	@PostMapping("/mutant")
+	//@ResponseStatus(HttpStatus.FORBIDDEN)
+	public ResponseEntity<?> isMutant(@RequestBody AdnDTO adnIn) {
+		HttpStatus status = HttpStatus.FORBIDDEN;
+		Map<String, String> json = new HashMap<>();
+		String result = adnService.isMutante(adnIn.getDna());
+		if(!result.isBlank() && ( result.equalsIgnoreCase("M") || result.equalsIgnoreCase("H"))) {
+			if(result.equalsIgnoreCase("M")) {
+			   json.put("RESULT","true");
+			   status = HttpStatus.OK;
+			}
+			else {
+				json.put("RESULT","false");
+				status = HttpStatus.FORBIDDEN;
+			}
+		}
+		else {
+			json.put("ERROR",result);
+			json.put("CODE:",HttpStatus.FORBIDDEN.toString());
+			status = HttpStatus.FORBIDDEN;
+		}
+		
+		return new ResponseEntity<Map<String, String>>(json,status);
+	}
+	
+	@GetMapping("/stats")
+	public  ResponseEntity<?> stats() {
+		HttpStatus status = HttpStatus.OK;
+		Map<String, StatsDTO> json = new HashMap<>();
+		StatsDTO result = adnService.stats();
+		json.put("ADN", result);
+		return  new ResponseEntity<Map<String, StatsDTO>>(json,status);	
+	}
+	
+}	

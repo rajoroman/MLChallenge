@@ -1,0 +1,2 @@
+INSERT INTO registroadn(adn, type) VALUES ('aaaaa,bbbbb,cccc,dddd','H');
+INSERT INTO registroadn(adn, type) VALUES ('fffff,ggggg,hhhh,iiii','M');

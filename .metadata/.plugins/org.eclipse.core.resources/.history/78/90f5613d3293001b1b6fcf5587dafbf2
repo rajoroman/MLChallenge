@@ -1,0 +1,9 @@
+package com.formacionbdi.springboot.app.adn.models.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
+
+public interface AdnDao extends CrudRepository<RegistroAdn, Long> {
+
+}

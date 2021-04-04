@@ -1,0 +1,11 @@
+1617312643868	Rename package 'com.formacionbdi.springboot.app.productos'
+1617312666976	Rename package 'com.formacionbdi.springboot.app.productos.Controllers'
+1617312689722	Rename package 'com.formacionbdi.springboot.app.productos.models.dao'
+1617312702644	Rename package 'com.formacionbdi.springboot.app.productos.models.service'
+1617324944878	Delete element
+1617330497867	Rename package 'com.formacionbdi.springboot.app.adn.models.service'
+1617330962037	Copy package
+1617330972955	Delete element
+1617330983296	Delete element
+1617331031832	Rename package 'com.formacionbdi.springboot.app.adn.models.dao'
+1617331049025	Rename package 'com.formacionbdi.springboot.app.adn.Controllers'
