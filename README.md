@@ -50,5 +50,12 @@ Para probar la API se puede emplear elsoftware POSTMAN o similar.
 **BODY:** Se debe enviar en el body de la petición un JSON con la siguiente estructura como se observa en la imagen.
 &nbsp;
 
-![image](https://user-images.githubusercontent.com/51220078/113524513-c643a900-9574-11eb-822f-fa72dbf927c3.png)
+     {
+     "dna":["ATGCGA","CTTTGC","TTATGT","AGATTG","CACCTA","TCACTG"]
+     }
+
+
+&nbsp;
+![image](https://user-images.githubusercontent.com/51220078/113524551-01de7300-9575-11eb-8e65-7de3aeb6ee81.png)
+
 
