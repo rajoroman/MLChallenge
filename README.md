@@ -121,3 +121,22 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 &nbsp;
 
 ![image](https://user-images.githubusercontent.com/51220078/113524816-d5c3f180-9576-11eb-8dba-6f1ad207b346.png)
+
+&nbsp;
+
+**SERVICIO:** list
+&nbsp;
+
+**DESCRIPCION:** Por medio de éste servicio se obtienen el listado de los ADN registrados en la base de datos.
+&nbsp;
+
+**TIPO:** GET
+&nbsp;
+
+**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/list
+&nbsp;
+
+**BODY:** Sin contenido.
+&nbsp;
+
+![image](https://user-images.githubusercontent.com/51220078/113524856-2cc9c680-9577-11eb-8524-86b51988811e.png)
