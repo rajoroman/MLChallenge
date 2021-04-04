@@ -83,4 +83,20 @@ Si el ADN ya está registrado se recibe un JSON con la siguiente estructura y c�
              "ERROR": "DNA is previously registered"
          }
 
+Si la petición tiene un carácter invalido se recibe un JSON con la siguiente estructura y código 403:
+&nbsp;
 
+          {
+              "CODE:": "403 FORBIDDEN",
+              "ERROR": "Character Invalid"
+          }
+
+&nbsp;
+
+Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la siguiente estrcutura y código 403:
+&nbsp;
+
+         {
+             "CODE:": "403 FORBIDDEN",
+             "ERROR": "DNA structure error length difference"
+         }
