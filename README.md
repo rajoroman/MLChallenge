@@ -35,10 +35,13 @@ La solución se desplegó en AWS junto con una instancia de base de datos MySQL 
 
 ## **USO DE LA API**
 
-Para probar la API se puede emplear elsoftware POSTMAN o similar.
+Para probar la API se puede emplear el software POSTMAN o similar.
 &nbsp;
 
 **SERVICIO:** mutant
+&nbsp;
+
+**DESCRIPCION:** Por medio de éste servicio se envía la cadena de ADN, y se determina si es mutante o no. Si la cadena es valida se almacena una sola vez en la base de datos.
 &nbsp;
 
 **TIPO:** POST
@@ -100,3 +103,21 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
              "CODE:": "403 FORBIDDEN",
              "ERROR": "DNA structure error length difference"
          }
+&nbsp;
+
+**SERVICIO:** stats
+&nbsp;
+
+**DESCRIPCION:** Por medio de éste servicio se obtienen las estádisticas, cantidad de mutantes, cantidad de humanos, y su ratio.
+&nbsp;
+
+**TIPO:** GET
+&nbsp;
+
+**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/stats
+&nbsp;
+
+**BODY:** Sin contenido.
+&nbsp;
+
+![image](https://user-images.githubusercontent.com/51220078/113524816-d5c3f180-9576-11eb-8dba-6f1ad207b346.png)
