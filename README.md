@@ -58,4 +58,29 @@ Para probar la API se puede emplear elsoftware POSTMAN o similar.
 &nbsp;
 ![image](https://user-images.githubusercontent.com/51220078/113524551-01de7300-9575-11eb-8e65-7de3aeb6ee81.png)
 
+&nbsp;
+Si el ADN es mutante se recibe un código 200 y un JSON  con la siguiente estructura:
+
+
+         {
+             "RESULT": "true"
+         }
+
+&nbsp;
+Si el ADN es no mutante se recibe un cídigo 403 y un JSON con la siguiente estructura
+&nbsp;
+
+
+         {
+             "RESULT": "true"
+         }
+
+Si el ADN ya está registrado se recibe un JSON con la siguiente estructura y código 403:
+&nbsp;
+
+         {
+             "CODE:": "403 FORBIDDEN",
+             "ERROR": "DNA is previously registered"
+         }
+
 
