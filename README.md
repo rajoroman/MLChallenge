@@ -35,6 +35,19 @@ La solución se desplegó en AWS junto con una instancia de base de datos MySQL 
 
 ## **USO DE LA API**
 
+La API está conformada por tres servicios:
+&nbsp;
+
+1. ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/mutant
+&nbsp;
+2. ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/stats
+&nbsp;
+3. ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/list
+&nbsp; 
+
+(este último servicio, no fue requerido, se incluyó para verificar y visulizar las datos registrados en la base de datos).
+&nbsp;
+
 Para probar la API se puede emplear el software POSTMAN o similar.
 &nbsp;
 
@@ -103,6 +116,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
              "CODE:": "403 FORBIDDEN",
              "ERROR": "DNA structure error length difference"
          }
+
 &nbsp;
 
 **SERVICIO:** stats
@@ -114,7 +128,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 **TIPO:** GET
 &nbsp;
 
-**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/stats
+**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/stats**
 &nbsp;
 
 **BODY:** Sin contenido.
