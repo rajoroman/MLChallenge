@@ -83,7 +83,7 @@ Si el ADN es mutante se recibe un código 200 y un JSON  con la siguiente estruc
          }
 
 &nbsp;
-Si el ADN es no mutante se recibe un cídigo 403 y un JSON con la siguiente estructura
+Si el ADN es no mutante se recibe un código 403 y un JSON con la siguiente estructura
 &nbsp;
 
 
@@ -109,7 +109,7 @@ Si la petición tiene un carácter invalido se recibe un JSON con la siguiente e
 
 &nbsp;
 
-Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la siguiente estrcutura y código 403:
+Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la siguiente estructura y código 403:
 &nbsp;
 
          {
@@ -147,7 +147,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 **TIPO:** GET
 &nbsp;
 
-**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/list
+**URL:ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/list**
 &nbsp;
 
 **BODY:** Sin contenido.
