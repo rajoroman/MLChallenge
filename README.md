@@ -27,7 +27,7 @@ Se emplearon las herramientes EUREKA y ZUUL, para cubrir la exigencia que se men
 
 
 &nbsp;
-Con estas herramientas se pueden desplegar varias instancias del microservcio springboot-servicio-adn, para atender la demanda.
+Con estas herramientas se pueden desplegar varias instancias del microservicio springboot-servicio-adn, para atender la demanda.
 
 &nbsp;
 La solución se desplegó en AWS junto con una instancia de base de datos MySQL para almacenar los ADN validos.
@@ -45,7 +45,7 @@ La API está conformada por tres servicios:
 3. ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8090/api/adn/list
 &nbsp; 
 
-(este último servicio, no fue requerido, se incluyó para verificar y visulizar las datos registrados en la base de datos).
+(este último servicio, no fue requerido, se incluyó para verificar y visualizar las datos registrados en la base de datos).
 &nbsp;
 
 Para probar la API se puede emplear el software POSTMAN o similar.
@@ -122,7 +122,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 **SERVICIO:** stats
 &nbsp;
 
-**DESCRIPCION:** Por medio de éste servicio se obtienen las estádisticas, cantidad de mutantes, cantidad de humanos, y su ratio.
+**DESCRIPCION:** Por medio de éste servicio se obtienen las estadísticas, cantidad de mutantes, cantidad de humanos y su ratio.
 &nbsp;
 
 **TIPO:** GET
