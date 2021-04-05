@@ -140,3 +140,20 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 &nbsp;
 
 ![image](https://user-images.githubusercontent.com/51220078/113524856-2cc9c680-9577-11eb-8524-86b51988811e.png)
+
+
+&nbsp;
+
+Para verificar que la API esté operativa, se puede ingresar a la URL 
+&nbsp;
+
+http://ec2-3-8-21-133.eu-west-2.compute.amazonaws.com:8761/
+&nbsp;
+
+Se debe visualizar el portal de monitoreo de EUREKA
+&nbsp;
+
+## **SI NO ESTÁ OPERATIVA POR FAVOR REPORTAR AL CORREO rajoroman@gmail.com**
+
+&nbsp;
+![image](https://user-images.githubusercontent.com/51220078/113525029-2ee05500-9578-11eb-90c8-59b178e2d9b9.png)
