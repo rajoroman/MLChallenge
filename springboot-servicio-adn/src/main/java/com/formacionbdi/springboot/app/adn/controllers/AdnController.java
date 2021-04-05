@@ -21,7 +21,7 @@ import com.formacionbdi.springboot.app.commons.models.entity.RegistroAdn;
 @RestController
 public class AdnController {
 	
-	final  Logger log = LoggerFactory.getLogger(AdnController.class);
+	final  Logger log = LoggerFactory.getLogger(AdnController.class); 
 
 	@Autowired
 	private AdnService adnService;

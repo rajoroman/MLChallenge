@@ -57,7 +57,7 @@ public class AdnServiceImpl implements AdnService {
 		int countMutant = adnDao.countByType("M");
 		statsDTO.setCount_human_dna(countHuman);
 		statsDTO.setCount_mutant_dna(countMutant);
-		ratio = (float)countMutant/countAll;
+		ratio = countAll > 0 ? (float)countMutant/countAll : 0;
 		statsDTO.setRatio(ratio);
 		log.info(String.format("Ratio: %s", ratio));
 		return statsDTO;

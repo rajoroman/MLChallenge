@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:int="http://www.springframework.org/schema/integration"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	    http://www.springframework.org/schema/data/jpa	
+    	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/integration 
+		http://www.springframework.org/schema/integration/spring-integration.xsd
+		">
+	
+	<!-- Test -->
+	
+	<bean class="org.easymock.EasyMock" name="AdnService" autowire="byType" 
+		  factory-method="createStrictMock" primary="true" id="AdnDao">
+		  <constructor-arg value="com.formacionbdi.springboot.app.adn.dao.AdnDao"/>
+	</bean>
+	
+	<!-- START TEST SUBJECTS -->
+	<bean id="adnServiceImpl"
+	class="com.formacionbdi.springboot.app.adn.implement.AdnServiceImpl" />
+
+		
+		
+ </beans>
