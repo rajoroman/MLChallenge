@@ -38,11 +38,11 @@ La solución se desplegó en AWS junto con una instancia de base de datos MySQL 
 La API está conformada por tres servicios:
 &nbsp;
 
-1. ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/mutant
+1. http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/mutant
 &nbsp;
-2. ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/stats
+2. http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/stats
 &nbsp;
-3. ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/list
+3. http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/list
 &nbsp; 
 
 (este último servicio, no fue requerido, se incluyó para verificar y visualizar las datos registrados en la base de datos).
@@ -60,7 +60,7 @@ Para probar la API se puede emplear el software POSTMAN o similar.
 **TIPO:** POST
 &nbsp;
 
-**URL:ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/mutant**
+**URL: http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/mutant**
 &nbsp;
 
 **BODY:** Se debe enviar en el body de la petición un JSON con la siguiente estructura como se observa en la imagen.
@@ -128,7 +128,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 **TIPO:** GET
 &nbsp;
 
-**URL:ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/stats**
+**URL: http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/stats**
 &nbsp;
 
 **BODY:** Sin contenido.
@@ -147,7 +147,7 @@ Si se envía una cadena de ADN con estructura invalida se recibe un JSON con la 
 **TIPO:** GET
 &nbsp;
 
-**URL:ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/list**
+**URL: http://ec2-3-11-13-157.eu-west-2.compute.amazonaws.com:8090/api/adn/list**
 &nbsp;
 
 **BODY:** Sin contenido.
